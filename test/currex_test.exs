@@ -7,6 +7,6 @@ defmodule CurrexTest do
     assert %{rates: _, timestamp: global_timestamp} = in_usd_latest
     assert NaiveDateTime.to_iso8601(global_timestamp) |> NaiveDateTime.from_iso8601!() == global_timestamp
     assert %{currency: _, timestamp: timestamp, rate: _} = hd(in_usd_latest.rates)
-    assert NaiveDateTime.to_iso8601(timestamp) |> NaiveDateTime.from_iso8601!() == timestamp
+    assert NaiveDateTime.to_iso8601(timestamp) |> NaiveDateTime.from_iso8601!(  ) == timestamp
   end
 end

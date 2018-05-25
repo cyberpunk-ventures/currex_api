@@ -1,4 +1,6 @@
 defmodule Currex do
+  use Tesla
+
   @moduledoc """
   Documentation for Currex.
   """
@@ -12,12 +14,14 @@ defmodule Currex do
       :world
 
   """
-  use Tesla
 
   plug(Tesla.Middleware.FollowRedirects)
   plug(Tesla.Middleware.BaseUrl, "https://api.currex.info/json/latest")
   plug(Tesla.Middleware.JSON)
 
+  @doc """
+  Use currency ticker (like USD or EUR) to get multiple base currencies rates in a given quote currency
+  """
   def latest!(currency) do
     {:ok, tesla_env} = get("/#{currency}/")
     body = tesla_env.body
